@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+        <input type="file" name="file" id="file" />
+        <button id="upload">上传</button>
+
+   <script>
+   
+
+        //登录
+        /*$.ajax({
+            url:"http://192.168.0.115/login",
+            type:"post",
+            data:{
+                name:"sgj",
+                pwd:"123456"
+            },
+            success:function(data){
+                console.log(data);
+            }
+        });*/
+
+     
+
+
+
+     //上传照片 js 原生
+   /* var file = document.querySelector('#file');
+    var upload = document.querySelector('#upload');
+    upload.onclick=uploadFile;
+ 
+    function uploadFile() {
+        var xhr = new XMLHttpRequest();
+        var formData = new FormData();
+        formData.append('pic', file.files[0]);
+        xhr.onload = function() {
+            if (xhr.readyState === 4) {
+                console.log(xhr.responseText);
+            }
+        };
+        xhr.open('post', 'http://192.168.0.115/postimg', true);
+        xhr.send(formData);
+    }*/
+
+    //上传 二进制照片 js 原生
+
+    var file = document.querySelector('#file');
+    var upload = document.querySelector('#upload');
+    var imgData;
+    upload.onclick=uploadFile;
+
+    file.onchange=function(){
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            imgData=e.target.result;
+        }
+
+        reader.readAsDataURL(file.files[0]);
+
+    }
+ 
+    function uploadFile() {
+      
+        var xhr = new XMLHttpRequest();
+        var formData = new FormData();
+        formData.append('pic', imgData);
+
+        xhr.onload = function() {
+            if (xhr.readyState === 4) {
+                console.log(xhr.responseText);
+            }
+        };
+        xhr.open('post', 'http://192.168.0.115/postpic', true);
+        xhr.send(formData);
+
+      
+    }
+
+
+    
+    </script>
+    
+</body>
+</html>
