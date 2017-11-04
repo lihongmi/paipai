@@ -1,5 +1,5 @@
-/
+/       get
 
 /login post  name pwd
 
-/list   headers token
+/list  get  headers authorization    miyao token

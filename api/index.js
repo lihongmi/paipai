@@ -17,7 +17,7 @@ app.get("/",function(req,res){
 app.post("/login",function(req,res){    
    
     var {name,pwd}=req.body;
-    if(name=="rice"&&pwd=="123"){
+    if(name=="sgj"&&pwd=="123456"){
         var user={uid:3};
         var token=jwt.sign({user},secret_key);
         res.json({token:token});
